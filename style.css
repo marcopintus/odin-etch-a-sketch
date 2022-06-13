@@ -9,16 +9,34 @@ body{
 }
 
 .title{
-    font-size: 48px;
+    font-size: 64px;
     text-align: center;
 }
 
 .canvas{
-    background-color: white;
+    background-color: rgb(4, 4, 88);
     display: flex;
     flex-wrap: wrap;
+    padding: 16px;
+    margin:40px;
+    border: 8px solid white;
+    border-radius: 16px;
 }
 .tile{
-    border-radius: 16px;
-    background-color: green;
+    border-radius: 0px;
+    background-color: white;
+    
 }
+
+.ligth-up{
+    background-color: black;
+}
+
+.control-panel{
+    color: white;
+    background-color: green;
+    width: 650px;
+    height: 100px;
+}
+
+
