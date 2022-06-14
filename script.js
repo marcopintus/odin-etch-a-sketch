@@ -1,5 +1,6 @@
 // functions
 function generateGrid(numTiles){
+    // generates the grid for a given number of tiles on one side of the square
     let canvWidth = 650;
     let tileDim = canvWidth/numTiles;
     for (let i=0; i<numTiles**2;i++){
@@ -14,6 +15,7 @@ function generateGrid(numTiles){
 }
 
 function deleteGrid(){
+    // removes all the tiles from the grid
     let tiles = document.querySelectorAll(".tile");
     tiles.forEach((tl)=>{
         tl.remove()
@@ -21,6 +23,8 @@ function deleteGrid(){
 }
 
 function updateGrid(){
+    // deletes the existing grid, to create a new one which has the correct amount of tiles
+    // it then deactivates the rainbow button, to start from the default colour
     deleteGrid()
     generateGrid(slider.value)
     sliderValue.innerHTML = `${slider.value}x${slider.value}`;
@@ -29,6 +33,7 @@ function updateGrid(){
 }
 
 function toggleRainbow(rainbow){
+    // turn on and off the rainbow mode, adding the rainbow to the backgound of the button
     let tileDimen = canvasWidth/slider.value;
     let check = document.querySelector(".activated")
     if ( check == null ){
@@ -42,6 +47,7 @@ function toggleRainbow(rainbow){
 }
 
 function setColor(rainbow){
+    // sets the colour depending on whether the rainbow mode is active or not
     let tileDimen = canvasWidth/slider.value;
     let tiles = document.querySelectorAll(".tile");
     tiles.forEach( tile => {
@@ -65,14 +71,14 @@ function setColor(rainbow){
 
 
 // variable initialization
-let canvasWidth = 650;
+let canvasWidth = 650;  // [px]
 let canvasHeight = canvasWidth;
 let numTilesSide = 16;
 let tileDimension = canvasWidth/numTilesSide;
 let rainbow = false
 
 
-// html definition
+// html page creation
 let title = document.createElement("div");
 title.classList.add("title");
 title.textContent = "Etch-a-Sketch";
