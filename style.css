@@ -50,6 +50,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .slider-value{
@@ -57,6 +58,7 @@ body{
     font-weight: 600;
     margin: 16px;
     text-align: center;
+    margin-top:8px;
 }
 
 .slider{
@@ -98,4 +100,12 @@ button:hover{
 button:active{
     transform: scale(0.95);
     box-shadow: 0px 0px 0px white;
+}
+
+.activated{
+    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+}
+
+.rainbow{
+    background-color: red;
 }
