@@ -2,7 +2,6 @@
 function generateGrid(numTiles){
     let canvWidth = 650;
     let tileDim = canvWidth/numTiles;
-    
     for (let i=0; i<numTiles**2;i++){
         let tile = document.createElement("div");
         tile.classList.add("tile");
@@ -11,8 +10,7 @@ function generateGrid(numTiles){
             tile.classList.add("light-up");      
         }) 
     canvas.appendChild(tile);
-    }   
-      
+    }       
 }
 
 function deleteGrid(){
@@ -25,28 +23,32 @@ function deleteGrid(){
 function updateGrid(){
     deleteGrid()
     generateGrid(slider.value)
-    sliderValue.innerHTML = `${slider.value}x${slider.value}`;   
+    sliderValue.innerHTML = `${slider.value}x${slider.value}`;
+    rainbowButton.classList.remove("activated")
+    setColor(rainbow)   
 }
 
 function toggleRainbow(rainbow){
+    let tileDimen = canvasWidth/slider.value;
     let check = document.querySelector(".activated")
     if ( check == null ){
         rainbow = true;
-        setColor(rainbow)
+        setColor(rainbow,tileDimen);
     } else {
         rainbow = false;
-        setColor(rainbow)
+        setColor(rainbow,tileDimen);
     }  
     rainbowButton.classList.toggle("activated");   
 }
 
 function setColor(rainbow){
-    let tiles = document.querySelectorAll(".tile")
+    let tileDimen = canvasWidth/slider.value;
+    let tiles = document.querySelectorAll(".tile");
     tiles.forEach( tile => {
         if(rainbow==false){
             tile.addEventListener("mouseenter",() => {
                 tile.classList.add("light-up");
-                tile.setAttribute("style",`width: ${tileDimension}px; height: ${tileDimension}px; background-color: black; margin:0; padding:0;`); 
+                tile.setAttribute("style",`width: ${tileDimen}px; height: ${tileDimen}px; background-color: black; margin:0; padding:0;`); 
             } )
         } else {
             tile.addEventListener("mouseenter",() => {
@@ -54,7 +56,7 @@ function setColor(rainbow){
                 let ranR = Math.random()*255;
                 let ranG = Math.random()*255;
                 let ranB = Math.random()*255;
-                tile.setAttribute("style",`width: ${tileDimension}px; height: ${tileDimension}px; background-color: rgb(${ranR},${ranG},${ranB}); margin:0; padding:0;`);    
+                tile.setAttribute("style",`width: ${tileDimen}px; height: ${tileDimen}px; background-color: rgb(${ranR},${ranG},${ranB}); margin:0; padding:0;`);    
          })
         }
     }
@@ -65,15 +67,12 @@ function setColor(rainbow){
 // variable initialization
 let canvasWidth = 650;
 let canvasHeight = canvasWidth;
-
 let numTilesSide = 16;
 let tileDimension = canvasWidth/numTilesSide;
-
 let rainbow = false
 
 
 // html definition
-
 let title = document.createElement("div");
 title.classList.add("title");
 title.textContent = "Etch-a-Sketch";
@@ -117,10 +116,8 @@ controlPanel.appendChild(rainbowButton)
 
 
 // main
-
 generateGrid(numTilesSide)
-setColor(rainbow)
-
+setColor(rainbow,tileDimension)
 canvas.onmouseenter = setColor(rainbow)
 clearButton.onclick = updateGrid
 slider.oninput = updateGrid
